@@ -1,0 +1,32 @@
+{"properties": [
+  {
+    "name": "processing.schedule.cron",
+    "type": "java.lang.String",
+    "description": "A description for 'processing.schedule.cron'"
+  },
+  {
+    "name": "app.file-cleanup.days-to-keep",
+    "type": "java.lang.String",
+    "description": "A description for 'app.file-cleanup.days-to-keep'"
+  },
+  {
+    "name": "app.cleanup.days-to-keep",
+    "type": "java.lang.String",
+    "description": "A description for 'app.cleanup.days-to-keep'"
+  },
+  {
+    "name": "app.cleanup.schedule.cron",
+    "type": "java.lang.String",
+    "description": "A description for 'app.cleanup.schedule.cron'"
+  },
+  {
+    "name": "monitoring-folder",
+    "type": "java.lang.String",
+    "description": "A description for 'monitoring-folder'"
+  },
+  {
+    "name": "integration.check-primary-interval",
+    "type": "java.lang.String",
+    "description": "A description for 'integration.check-primary-interval'"
+  }
+]}

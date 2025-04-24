@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.comerzzia.custom.erp.services.items.persistence.TaxItemMapper">
+
+<insert id="insertTaxItem" parameterType="com.comerzzia.integrations.model.catalog.items.ItemTaxDTO">
+    INSERT INTO D_ARTICULOS_IMP_TBL (UID_ACTIVIDAD, CODART, ID_TRAT_IMPUESTOS, CODIMP)
+    VALUES (#{uidActividad,jdbcType=VARCHAR}, #{codArt,jdbcType=VARCHAR}, 
+            #{idTratImpuestos,jdbcType=BIGINT}, #{codImp,jdbcType=CHAR})
+</insert>
+
+<delete id="deleteAll" parameterType="map">
+      DELETE FROM D_ARTICULOS_IMP_TBL 
+    WHERE UID_ACTIVIDAD = #{uidActividad} AND CODART = #{codArt}
+</delete>
+
+</mapper>

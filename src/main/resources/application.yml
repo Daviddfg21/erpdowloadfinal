@@ -1,0 +1,50 @@
+server:
+  port: 8080
+  servlet:
+    contextPath: /custom/erp
+
+spring:  
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: "comerzzia erp custom"
+  messages:
+    basename: i18n/messages,i18n/custom-messages
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
+  integration:
+    endpoint:
+      read-interval: 1000
+    file:
+      autoCreateDirectory: true
+      useWatchService: true
+    processed-files:
+      retention: 86400000  # 24 horas en milisegundos 
+        
+management:
+  server:
+    port: 9090
+  endpoints:
+    web:
+      base-path: "/manage"        
+      exposure:
+        include: "*"
+          
+# Configuraciones del monitor de archivos
+file:
+  monitor:
+    scan-interval: 10000                     # Intervalo de escaneo en ms
+    max-files-per-batch: 10                  # Cantidad máxima de archivos a procesar por lote
+    processing-timeout: 300000               # Timeout para procesamiento de archivos (5 min)
+    verify-directories-interval: 3600000     # Verificación de directorios cada hora
+    min-disk-space: 52428800                 # Espacio mínimo en disco (50MB)        
+    
+# Habilitar logging detallado para componentes clave
+logging:
+  level:
+    org.springframework.integration: DEBUG
+    org.springframework.integration.file: TRACE
+    com.comerzzia.custom.erp.monitor: DEBUG
+    org.springframework.integration.endpoint.SourcePollingChannelAdapter: INFO
+    org.springframework.messaging: DEBUG

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+       xsi:schemaLocation="http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+     http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+     http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd"
+     default-lazy-init="true">
+      
+  <!-- estos beans se inician lazy-init=false porque necesitan inicializarse al principio y están fuera del component-scan -->  
+<bean id="AppInfo" class="com.comerzzia.core.util.config.AppInfo" lazy-init="false"/>
+
+<context:component-scan base-package="com.comerzzia.core.servicios" />
+
+
+<context:component-scan base-package="com.comerzzia.custom.erp" />
+<context:component-scan base-package="com.comerzzia.custom.integration.services" />
+<context:component-scan base-package="com.comerzzia.servicios" />
+
+
+
+<tx:annotation-driven />
+<!-- scan for mappers and let them be autowired -->
+<!-- <mybatis:scan base-package="com.comerzzia.core.persistencia.permisos,com.comerzzia.core.persistencia.actividades,com.comerzzia.core.persistencia.usuarios,com.comerzzia.core.persistencia.variables" /> -->
+<mybatis:scan base-package="com.comerzzia.core.persistencia" /> 
+<mybatis:scan base-package="com.comerzzia.custom.erp.services.items.persistence" />
+<mybatis:scan base-package="com.comerzzia.custom.erp.services.salesfiles.persistence" />
+<mybatis:scan base-package="com.comerzzia.custom.integration.persistence" /> 
+<mybatis:scan base-package="com.comerzzia.persistencia" />
+</beans>

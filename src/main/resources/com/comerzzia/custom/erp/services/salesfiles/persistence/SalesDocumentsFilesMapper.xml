@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.comerzzia.custom.erp.services.salesfiles.persistence.SalesDocumentsFilesMapper" >
+  
+  <insert id="insert" parameterType="map">
+     INSERT INTO D_DOCUMENTOS_CONTENIDO_TBL (UID_ACTIVIDAD, UID_DOCUMENTO, MIME_TYPE, CONTENIDO_DOCUMENTO, LONGITUD)
+     VALUES (#{uidActividad,jdbcType=VARCHAR}, #{uidDocumento,jdbcType=VARCHAR}, #{mimeType,jdbcType=VARCHAR},
+        #{contenidoDocumento,jdbcType=BLOB}, #{longitud,jdbcType=DECIMAL})    
+  </insert>
+  
+</mapper>

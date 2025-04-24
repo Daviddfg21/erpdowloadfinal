@@ -1,0 +1,103 @@
+# Configuración de monitoreo de carpetas
+folder-monitor:
+  # Configuración de entidades a monitorear
+  entities:
+    # Entidad de items
+    - type: items
+      name: Productos
+      folder: C:/comerzzia/monitor/items
+      priority: 200
+      dependencies:
+        block: 
+          - promotions
+          - rates
+        precedence: always
+    
+    # Entidad de Promotions
+    - type: promotions
+      name: Promociones
+      folder: C:/comerzzia/monitor/promotions
+      priority: 100
+      dependencies:
+        blocked-by: 
+          - items
+        precedence: first
+    
+    # Entidad de Tarifas
+    - type: rates
+      name: Tarifas
+      folder: C:/comerzzia/monitor/rates
+      priority: 100
+      dependencies:
+        blocked-by: 
+          - items
+        precedence: first
+    
+    # Entidad de Almacenes
+    - type: warehouse
+      name: Almacén
+      folder: C:/comerzzia/monitor/warehouse
+      priority: 200
+      
+    # Entidad de sales
+    - type: sales
+      name: Sales
+      folder: C:/comerzzia/monitor/sales
+      priority: 200
+      
+    # Entidad de salesfiles
+    - type: salesfiles
+      name: SalesFiles
+      folder: C:/comerzzia/monitor/salesfiles
+      priority: 200
+      
+    # Entidad de saleschannels
+    - type: saleschannels
+      name: SalesChannels
+      folder: C:/comerzzia/monitor/saleschannels
+      priority: 200
+      
+  # Configuración de integración por tipo de entidad
+  integration-config:
+    items:
+      dto-class: com.comerzzia.integrations.model.catalog.items.ItemsDTO
+      service-bean: itemsService
+      process-method: processItems
+      
+    promotions:
+      dto-class: com.comerzzia.integrations.model.catalog.promotions.PromotionsDTO
+      service-bean: promotionsService
+      process-method: processPromotions
+      
+    rates:
+      dto-class: com.comerzzia.integrations.model.catalog.rates.RatesDTO
+      service-bean: ratesService
+      process-method: processRates
+      
+    warehouse:
+      dto-class: com.comerzzia.integrations.model.warehouse.WarehouseItemsDTO
+      service-bean: warehouseService
+      process-method: processStocks
+      
+    sales:
+      dto-class: com.comerzzia.integrations.model.eticket.SalesDocumentsDTO
+      service-bean: salesService
+      process-method: processSales
+      
+    salesfiles:
+      dto-class: com.comerzzia.integrations.model.sales.model.SalesDocumentsFilesDTO
+      service-bean: salesFilesService
+      process-method: processSalesDoc
+      
+    saleschannels:
+      dto-class: com.comerzzia.integrations.model.catalog.saleschannels.SalesChannelsDTO
+      service-bean: saleschannelsService
+      process-method: processSalesChannels
+      
+  # Configuraciones adicionales
+  global-settings:
+    # Tiempo de espera entre revisiones de carpetas (milisegundos)
+    poll-interval: 1000
+    
+    # Número máximo de archivos a procesar por iteración
+    max-files-per-poll: 10
