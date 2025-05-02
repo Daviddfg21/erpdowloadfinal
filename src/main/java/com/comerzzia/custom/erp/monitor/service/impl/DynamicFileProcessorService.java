@@ -21,6 +21,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
+import com.comerzzia.custom.erp.monitor.config.EntityConfig;
 import com.comerzzia.custom.erp.monitor.config.EntityConfig.FolderMonitorConfig;
 import com.comerzzia.custom.erp.monitor.config.EntityConfig.IntegrationConfig;
 import com.comerzzia.custom.erp.monitor.domain.Entity;
@@ -72,7 +73,7 @@ public class DynamicFileProcessorService implements FileProcessorService {
 			}
 
 			// Verificar rutas de carpetas
-			for (EntityConfig.EntityConfig entity : folderMonitorConfig.getEntities()) {
+			for (EntityConfig.EntityDefinition entity : folderMonitorConfig.getEntities()) {
 				if (entity.getFolder() == null || entity.getFolder().trim().isEmpty()) {
 					throw new IllegalStateException("Entidad " + entity.getName() + " no tiene carpeta configurada");
 				}

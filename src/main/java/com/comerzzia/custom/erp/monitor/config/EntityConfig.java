@@ -1,9 +1,6 @@
 package com.comerzzia.custom.erp.monitor.config;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -68,16 +65,16 @@ public class EntityConfig {
 	 */
 	public static class FolderMonitorConfig {
 
-		private List<EntityConfig> entities;
+		private List<EntityDefinition> entities;
 		private Map<String, IntegrationConfig> integrationConfig;
 		private GlobalSettings globalSettings;
 
 		// Getters y setters
-		public List<EntityConfig> getEntities() {
+		public List<EntityDefinition> getEntities() {
 			return entities;
 		}
 
-		public void setEntities(List<EntityConfig> entities) {
+		public void setEntities(List<EntityDefinition> entities) {
 			this.entities = entities;
 		}
 
@@ -99,9 +96,10 @@ public class EntityConfig {
 	}
 
 	/**
-	 * Clase para mapear la configuración de una entidad
+	 * Clase para mapear la configuración de una entidad Renamed from EntityConfig to EntityDefinition to avoid naming
+	 * conflict
 	 */
-	public static class EntityConfig {
+	public static class EntityDefinition {
 
 		private String type;
 		private String name;
